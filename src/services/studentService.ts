@@ -1,8 +1,13 @@
-export const createStudent = async () => {
+import StudentRegisterDTO from "../DTO/studentRegisterDTO"
+import studentModel from "../models/studentModel";
+
+export const createStudent = async (student:StudentRegisterDTO):Promise<boolean> => {
     try {
-        
+        const newStudent = await studentModel.create(student);
+        newStudent.save();
+        return true
     } catch (error) {
-        console.log(error)
+        throw error
     }
 }
 
