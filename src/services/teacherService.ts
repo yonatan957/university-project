@@ -1,3 +1,4 @@
+import changeGradeDTO from "../DTO/changeGradeDTO";
 import giveGradeDTO from "../DTO/giveGradeDTO";
 import TeacherRegisterDTO from "../DTO/teacherRegisterDTO"
 import TestID from "../DTO/testDescriptonDTO";
@@ -33,6 +34,21 @@ export const addgradeByStudentId = async (studentId:string, gradeDTO:giveGradeDT
     }
 }
 
+export const changeGradeByStudentId = async (studentId:string, gradeDTO:changeGradeDTO, teacher:UserTransferDetails):Promise<boolean> => {
+    try {
+        const result = await teacherModel.find({_id: teacher.id, "grades._id": studentId})
+        if (!result) {
+            throw new Error("user or student not found")
+        }
+        const student = await studentModel.updateOne({_id: studentId, "grades._id": gradeDTO.grade_id}, {$set: {'grades.$.grade': gradeDTO.grade}}, {new: true})
+        if (!student) {
+            throw new Error("student not found")
+        }
+        return true
+    } catch (error) {
+        throw error
+    }
+}
 export const getAllStudents = async (teacher:UserTransferDetails):Promise<Istudent[]> => {
     try {
         const result = await teacherModel.findById(teacher.id).populate("students");
