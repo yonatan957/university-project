@@ -11,16 +11,19 @@ const gradeSchema = new Schema<Igrade>({
     grade: {type: Number, required: true}
 });
 
-interface Istudent extends Document {
+export interface Istudent extends Document {
     name: string,
     email: string,
     password: string,
-    grades: Igrade[]
+    grades: Igrade[],
+    class_name: string
 }
 
 const studentSchema = new Schema<Istudent>({
     name: {type: String, required: [true, "Name is required"], minlength: 2, maxlength: 30},
     email: {type: String, required: [true, "Email is required"], unique: true},
+    password: {type: String, required: [true, "Password is required"]},
+    class_name: {type: String, required: [true, "Class name is required"]},
     grades: {type: [gradeSchema],default:[] , validate:[validator.isEmail, "invalid email"]}
 });
 
