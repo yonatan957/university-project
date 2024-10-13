@@ -1,5 +1,5 @@
 import express from "express";
-import { getGread, register } from "../controllers/studentController";
+import { getGrade, register } from "../controllers/studentController";
 import { Students } from "../middlewares/authMiddlewar";
 const router = express.Router();
 /**
@@ -40,7 +40,7 @@ router.post('/register', register);
 
 /**
  * @swagger
- * /students/gread/{testDescription}:
+ * /students/grade/{testDescription}:
  *   get:
  *      tags: [students]
  *      summary: register
@@ -57,6 +57,6 @@ router.post('/register', register);
  *              example:
  *                result: 100
  */
-router.get('/gread/:testDescription',Students, getGread);
+router.get('/grade/:testDescription',Students, getGrade);
 
 export default router;

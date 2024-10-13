@@ -9,13 +9,14 @@ export const logInS = async (person:logInDTO):Promise<string> => {
     try {
         const teacher = await teacherModel.findOne({ name: person.name });
         const student = await studentModel.findOne({ name: person.name });
+        console.log(teacher, student)
         if (teacher) {
             if (await bcrypt.compare(person.password, teacher.password)) {
                 const token = jwt.sign({ id: teacher._id, roll: 'teacher' }, process.env.JWT_SECRET as string, { expiresIn: '15m' });
                 return token
             }
         } else if (student) {
-            if (student.password === person.password) {
+            if (await bcrypt.compare(person.password, student.password)) {
                 const token = jwt.sign({ id: student._id, roll: 'student' }, process.env.JWT_SECRET as string, { expiresIn: '15m' });
                 return token
             }
@@ -25,11 +26,3 @@ export const logInS = async (person:logInDTO):Promise<string> => {
         throw error
     }
 }
-
-// export const logoutS = async () => {
-//     try {
-        
-//     } catch (error) {
-        
-//     }
-// }

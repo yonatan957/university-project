@@ -3,7 +3,6 @@ import TestDescriptionDTO from "../DTO/testDescriptonDTO";
 import studentModel from "../models/studentModel";
 import bcrypt from "bcrypt";
 import teacherModel from "../models/teacherModel";
-import { Types } from "mongoose";
 
 export const createStudent = async (
   student: StudentRegisterDTO
@@ -28,14 +27,14 @@ export const createStudent = async (
   }
 };
 
-export const getGreadByDescription = async (
+export const getGradeByDescription = async (
   testDescription: TestDescriptionDTO,
   id: string
 ): Promise<number> => {
   try {
     const result = await studentModel.findOne({
       _id: id,
-      "grades._id": testDescription.description,
+      "grades.description": testDescription.description,
     });
     if (!result) {
       throw new Error("user not found");
