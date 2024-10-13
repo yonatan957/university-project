@@ -24,7 +24,6 @@ export const getGrade = async (
 ): Promise<void> => {
   try {
     const description: TestDescriptionDTO = {description:req.params.testDescription as string}
-    console.log(description)
     const result = await getGradeByDescription(description, res.locals.user.id);
     res.status(200).json(result);
   } catch (error: any) {

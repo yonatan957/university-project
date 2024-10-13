@@ -123,7 +123,6 @@ export const getGradeByStudentId = async (
       _id: teacherDetails.id,
       "students._id": studentId,
     });
-    console.log(studentId);
     if (!teacher) {
       throw new Error("user or student not found");
     }

@@ -9,7 +9,6 @@ export const logInS = async (person:logInDTO):Promise<string> => {
     try {
         const teacher = await teacherModel.findOne({ name: person.name });
         const student = await studentModel.findOne({ name: person.name });
-        console.log(teacher, student)
         if (teacher) {
             if (await bcrypt.compare(person.password, teacher.password)) {
                 const token = jwt.sign({ id: teacher._id, roll: 'teacher' }, process.env.JWT_SECRET as string, { expiresIn: '15m' });
