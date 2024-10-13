@@ -22,7 +22,6 @@ export const Students = (
         res.status(401).json({ success: false, message: "Unauthorized" });
         return;
     }
-    console.log(user)
     next();
 }
 
@@ -46,6 +45,5 @@ export const Teachers = (
         res.status(401).json({ success: false, message: "Unauthorized" });
         return;
     }
-    console.log(user)
     next();
 }

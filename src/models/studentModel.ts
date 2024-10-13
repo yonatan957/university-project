@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
 import validator from "validator";
 
-interface Igrade extends Document {
+export interface Igrade extends Document {
     description: string;
     grade: number;
 }
