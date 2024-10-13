@@ -5,7 +5,7 @@ const options:swaggerJSDoc.Options = {
     definition: {
         openapi: "3.0.0",
         info: {
-            title: "To Do List API",
+            title: "university API",
             version: "1.0.0",
             description: "To Do List API Information",
         },

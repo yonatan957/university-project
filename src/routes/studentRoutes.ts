@@ -43,8 +43,8 @@ router.post('/register', register);
  * /students/grade/{testDescription}:
  *   get:
  *      tags: [students]
- *      summary: register
- *      description: register
+ *      summary: get grade
+ *      description: get grade
  *      parameters:
  *        - in: path
  *          name: testDescription
