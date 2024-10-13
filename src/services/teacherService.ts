@@ -1,9 +1,13 @@
+import TeacherRegisterDTO from "../DTO/teacherRegisterDTO"
+import TeacherModel from "../models/teacherModel";
 
-export const createTeacher = async () => {
+export const createTeacher = async (teacher:TeacherRegisterDTO):Promise<boolean> => {
     try {
-        
+        const newteacher = await TeacherModel.create(teacher);
+        newteacher.save()
+        return true
     } catch (error) {
-        console.log(error)
+        throw error
     }
 }
 export const addgradeByStudentId = async () => {

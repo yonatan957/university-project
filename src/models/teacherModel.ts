@@ -3,10 +3,10 @@ import validator from "validator";
 import { Istudent } from "./studentModel";
 
 interface Iteacher {
-    name: string;
-    email: string;
-    password: string;
-    class_name: string;
+    name: string,
+    email: string,
+    password: string,
+    class_name: string,
     students: Types.ObjectId[] | Istudent[];
 }
 
