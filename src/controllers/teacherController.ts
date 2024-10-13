@@ -5,6 +5,7 @@ import { createTeacher } from "../services/teacherService";
 export const register = async (req: Request<any, any, TeacherRegisterDTO>, res: Response): Promise<void> => {
     try {
        const result = await createTeacher(req.body);
+       res.status(201).json(result)
     } catch (error:any) {
         res.status(400).json({ error:error.message })
     }

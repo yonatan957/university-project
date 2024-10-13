@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { logInS, logoutS } from "../services/logService";
+import { logInS } from "../services/logService";
 import logInDTO from "../DTO/logInDTO";
 
 
