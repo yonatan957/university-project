@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { createStudent, getGreadByDescription } from "../services/studentService";
 
 export const register = async (req:Request, res:Response):Promise<void> => {
