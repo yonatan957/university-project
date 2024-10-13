@@ -21,10 +21,10 @@ export interface Istudent extends Document {
 
 const studentSchema = new Schema<Istudent>({
     name: {type: String, required: [true, "Name is required"], minlength: 2, maxlength: 30},
-    email: {type: String, required: [true, "Email is required"], unique: true},
+    email: {type: String, required: [true, "Email is required"] , validate:[validator.isEmail, "invalid email"], unique: true},
     password: {type: String, required: [true, "Password is required"]},
     class_name: {type: String, required: [true, "Class name is required"]},
-    grades: {type: [gradeSchema],default:[] , validate:[validator.isEmail, "invalid email"]}
+    grades: {type: [gradeSchema],default:[] }
 });
 
 export default mongoose.model<Istudent>("Student", studentSchema);

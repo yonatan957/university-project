@@ -1,3 +1,3 @@
-export default interface TestID {
-    id: string
+export default interface TestDescription {
+  description: string;
 }

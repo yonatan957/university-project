@@ -6,6 +6,7 @@ import TestDescriptionDTO from "../DTO/testDescriptonDTO";
 export const register = async (req:Request<any, any, StudentRegisterDTO>, res:Response):Promise<void> => {
     try {
         const result = await createStudent(req.body);
+        res.status(201).json(result)
     } catch (error:any) {
         res.status(400).json({ error:error.message })
     }
