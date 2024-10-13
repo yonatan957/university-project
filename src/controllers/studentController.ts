@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { createStudent, getGreadByDescription } from "../services/studentService";
 import StudentRegisterDTO from "../DTO/studentRegisterDTO";
+import TestDescriptionDTO from "../DTO/testDescriptonDTO";
 
 export const register = async (req:Request<any, any, StudentRegisterDTO>, res:Response):Promise<void> => {
     try {
@@ -10,9 +11,10 @@ export const register = async (req:Request<any, any, StudentRegisterDTO>, res:Re
     }
 }
 
-export const getGread = async (req:Request, res:Response):Promise<void> => {
+export const getGread = async (req:Request<any, any, TestDescriptionDTO>, res:Response):Promise<void> => {
     try {
-        const result = await getGreadByDescription();
+        const result = await getGreadByDescription(req.body, res.locals.user.id);
+        res.status(200).json(result) 
     } catch (error:any) {
         res.status(400).json({ error:error.message })
     }
